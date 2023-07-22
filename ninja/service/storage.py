@@ -13,10 +13,10 @@ def load_aws_config(node, config_path):
     import configparser
     config = configparser.ConfigParser()
     config.read(config_path)
-    aws_access_key_id = config['default']['aws_access_key_id']
-    aws_secret_access_key = config['default']['aws_secret_access_key']
-    region = config['default']['region']
-    bucket = config['default']['bucket']
+    aws_access_key_id = config['AWS_S3']['aws_access_key_id']
+    aws_secret_access_key = config['AWS_S3']['aws_secret_access_key']
+    region = config['AWS_S3']['region']
+    bucket = config['AWS_S3']['bucket']
     return with_debug_log(aws_access_key_id, aws_secret_access_key, region, bucket)
 
 
