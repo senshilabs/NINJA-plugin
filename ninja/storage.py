@@ -1,4 +1,4 @@
-from .service.common import COMMON, STRING, IMAGE
+from .service.common import COMMON, STRING, IMAGE, load_http_image
 from .service.storage import load_aws_config, save_image_s3, copy_s3
 
 CATEGORY = "NINJA/Storage"
@@ -25,6 +25,29 @@ AWS_REGIONS = [
     'me-south-1',
     'sa-east-1'
 ]
+
+
+class LoadImageHTTP(COMMON):
+    def __init__(self):
+        pass
+
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "image_url": (STRING, {
+                    "multiline": False,
+                    "default": "http url"
+                }),
+            },
+        }
+
+    RETURN_TYPES = (IMAGE,)
+    RETURN_NAMES = ("image",)
+    CATEGORY = CATEGORY
+
+    def execute(self, image_url):
+        return load_http_image(image_url)
 
 
 class LoadAWSConfig(COMMON):
@@ -84,7 +107,8 @@ class S3ImageUpload(COMMON):
 
     # 이미지는 텐서
     def execute(self, image, aws_access_key_id, aws_secret_access_key, region, bucket, prompt=None, extra_pnginfo=None):
-        return save_image_s3(self, image, aws_access_key_id, aws_secret_access_key, region, bucket, prompt, extra_pnginfo)
+        return save_image_s3(self, image, aws_access_key_id, aws_secret_access_key, region, bucket, prompt,
+                             extra_pnginfo)
 
 
 class S3FileUpload(COMMON):
