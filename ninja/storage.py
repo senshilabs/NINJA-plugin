@@ -123,5 +123,5 @@ class S3FileUpload(COMMON):
     OUTPUT_NODE = True
 
     # 이미지는 텐서
-    def execute(self, file_path, aws_access_key_id, aws_secret_access_key, region, bucket):
-        return copy_s3(self, file_path, aws_access_key_id, aws_secret_access_key, region, bucket)
+    def execute(self, local_file_path, aws_access_key_id, aws_secret_access_key, region, bucket):
+        return copy_s3(self, local_file_path, aws_access_key_id, aws_secret_access_key, region, bucket)

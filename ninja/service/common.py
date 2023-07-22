@@ -19,7 +19,7 @@ CATEGORY = "NINJA"
 DEBUG = True
 
 
-def with_debug_log(**return_value):
+def with_debug_log(*return_value):
     if DEBUG:
         print(return_value)
     return return_value

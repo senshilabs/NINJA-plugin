@@ -67,7 +67,7 @@ def copy_s3(node, file_path, aws_access_key_id, aws_secret_access_key, region, b
                       aws_secret_access_key=aws_secret_access_key,
                       region_name=region
                       )
-    file_name = file_path.split('/')[-1]
+    file_name = file_path.replace('\\','/').split('/')[-1]
     s3_path = f's3://{bucket}/{file_name}'
     s3.upload_file(file_path, bucket, file_name)
     return with_debug_log(s3_path)
