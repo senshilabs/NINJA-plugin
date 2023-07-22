@@ -1,1 +1,4 @@
-boto3
+boto3==1.28.9
+web3==6.6.1
+substrate-interface==1.7.3
+requests==2.31.0
