@@ -15,10 +15,10 @@ ABI = """
     }
   },
   "contract": {
-    "name": "my_psp34_metadata",
-    "version": "4.0.0-beta",
+    "name": "shiden34",
+    "version": "1.0.0",
     "authors": [
-      "Brushfam <dominik.krizo@727.ventures>"
+      "Astar builder"
     ]
   },
   "spec": {
