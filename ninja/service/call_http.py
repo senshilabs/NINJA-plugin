@@ -34,7 +34,7 @@ def call_http(method, server_url, headers, body, params0, params1, params2, para
     if method == "GET":
         resp = requests.get(server_url, headers=headers)
     elif method == "POST":
-        resp = requests.post(server_url, headers=headers, data=body)
+        resp = requests.post(server_url, headers=headers, json=body)
     elif method == "PUT":
         resp = requests.put(server_url, headers=headers, data=body)
     elif method == "DELETE":
