@@ -6,6 +6,7 @@ from substrateinterface.contracts import ContractInstance, ContractMetadata
 from ..common.payable_mint import ABI as ABI_PAYABLE_MINT
 from ..common.psp34 import ABI as ABI_PSP34
 from ...common import with_debug_log
+from ...storage import read_image_path_on_metadata
 
 
 def read_attribute(rpc_url, contract_address, id, key):
@@ -43,5 +44,6 @@ def read_image_path(rpc_url, contract_address, id):
                          {
                              "token_id": id
                          }).value
-    print(resp)
-    return with_debug_log(resp['result']['Ok']['data']['Ok']['Ok'])
+    metadata_url = resp['result']['Ok']['data']['Ok']['Ok']
+    image_url = read_image_path_on_metadata(metadata_url)
+    return with_debug_log(image_url)

@@ -2,7 +2,8 @@ from .astar_node import ReadImagePathERC721 as AstarReadImagePathERC721
 from .astar_node import ReadImagePathPayableMint as AstarReadImagePathPayableMint
 from .astar_node import ReadAttributePSP43 as AstarReadAttributePSP43
 from .ether_node import ReadImagePathERC721 as EtherReadImagePathERC721
-from .storage import S3ImageUpload, LoadAWSConfig, S3FileUpload, LoadImageHTTP, S3MetadataUpload
+from .storage import S3ImageUpload, LoadAWSConfig, S3FileUpload, \
+    LoadImageHTTP, S3MetadataUpload, LoadImageFromMetadataHTTP
 from .http import HttpCall
 
 # A dictionary that contains all nodes you want to export with their names
@@ -13,6 +14,7 @@ NODE_CLASS_MAPPINGS = {
     "LoadAWSConfig": LoadAWSConfig,
     "S3FileUpload": S3FileUpload,
     "LoadImageHTTP": LoadImageHTTP,
+    "LoadImageFromMetadataHTTP": LoadImageFromMetadataHTTP,
     "EtherReadImagePathERC721": EtherReadImagePathERC721,
     "AstarReadImagePathERC721": AstarReadImagePathERC721,
     "AstarReadImagePathPayableMint": AstarReadImagePathPayableMint,
@@ -27,6 +29,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "LoadAWSConfig": "Load AWS Config",
     "S3FileUpload": "S3 File Upload",
     "LoadImageHTTP": "Load Image HTTP",
+    "LoadImageFromMetadataHTTP": "Load Image From Metadata HTTP",
     "EtherReadImagePathERC721": "Ether Read Image Path ERC721",
     "AstarReadImagePathERC721": "Astar Read Image Path ERC721",
     "AstarReadImagePathPayableMint": "Astar Read Image Path Payable Mint",

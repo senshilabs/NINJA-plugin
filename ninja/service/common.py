@@ -19,7 +19,7 @@ CATEGORY = "NINJA"
 DEBUG = True
 
 
-def load_http_image(url):
+def load_image_http(url):
     import requests
     import torch
     from PIL import Image
@@ -30,7 +30,7 @@ def load_http_image(url):
     i = i.convert("RGB")
     image = np.array(i).astype(np.float32) / 255.0
     image = torch.from_numpy(image)[None,]
-    return (image,)
+    return image
 
 
 def with_debug_log(*return_value):

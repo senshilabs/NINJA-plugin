@@ -1,5 +1,6 @@
-from .service.common import COMMON, STRING, IMAGE, load_http_image
-from .service.storage import load_aws_config, save_image_s3, copy_s3, save_metadata_s3
+from .service.common import COMMON, STRING, IMAGE
+from .service.storage import load_aws_config, save_image_s3, copy_s3, save_metadata_s3, load_http_image_on_metadata, \
+    load_http_image
 
 CATEGORY = "NINJA/Storage"
 
@@ -25,6 +26,29 @@ AWS_REGIONS = [
     'me-south-1',
     'sa-east-1'
 ]
+
+
+class LoadImageFromMetadataHTTP(COMMON):
+    def __init__(self):
+        pass
+
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "metadata_url": (STRING, {
+                    "multiline": False,
+                    "default": "http url"
+                }),
+            },
+        }
+
+    RETURN_TYPES = (IMAGE,)
+    RETURN_NAMES = ("image",)
+    CATEGORY = CATEGORY
+
+    def execute(self, metadata_url):
+        return load_http_image_on_metadata(metadata_url)
 
 
 class LoadImageHTTP(COMMON):
@@ -95,7 +119,10 @@ class S3ImageUpload(COMMON):
                     "multiline": False,
                     "default": "Put your bucket name here"
                 }),
-
+                "optional_key": (STRING, {
+                    "multiline": False,
+                    "default": ""
+                }),
             },
         }
 
@@ -105,9 +132,12 @@ class S3ImageUpload(COMMON):
 
     OUTPUT_NODE = True
 
-    def execute(self, image, aws_access_key_id, aws_secret_access_key, region, bucket, prompt=None, extra_pnginfo=None):
-        return save_image_s3(self, image, aws_access_key_id, aws_secret_access_key, region, bucket, prompt,
-                             extra_pnginfo)
+    def execute(self, image, aws_access_key_id, aws_secret_access_key, region, bucket,
+                optional_key,
+                prompt=None, extra_pnginfo=None):
+        return save_image_s3(self, image, aws_access_key_id, aws_secret_access_key, region, bucket,
+                             optional_key,
+                             prompt, extra_pnginfo)
 
 
 class S3MetadataUpload(COMMON):
@@ -147,6 +177,10 @@ class S3MetadataUpload(COMMON):
                     "multiline": False,
                     "default": "Put your name here (empty for none)"
                 }),
+                "optional_key": (STRING, {
+                    "multiline": False,
+                    "default": ""
+                }),
             },
         }
 
@@ -157,8 +191,10 @@ class S3MetadataUpload(COMMON):
     OUTPUT_NODE = True
 
     def execute(self, aws_access_key_id, aws_secret_access_key, region, bucket,
+                optional_key,
                 image_path, description, external_url, name, prompt=None, extra_pnginfo=None):
-        return save_metadata_s3(self,aws_access_key_id, aws_secret_access_key, region, bucket,
+        return save_metadata_s3(self, aws_access_key_id, aws_secret_access_key, region, bucket,
+                                optional_key,
                                 image_path, description, external_url, name)
 
 

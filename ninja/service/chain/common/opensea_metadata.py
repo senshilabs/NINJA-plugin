@@ -8,3 +8,9 @@ def make_metadata(image_path, description=None, external_url=None, name=None):
     }
 
     return {k: v for k, v in metadata.items() if v is not None}
+
+
+def read_image_path_on_metadata(metadata_url):
+    import requests
+    metadata = requests.get(metadata_url).json()
+    return metadata["image"]

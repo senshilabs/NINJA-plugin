@@ -6,8 +6,8 @@ import boto3
 import numpy as np
 from PIL import Image, PngImagePlugin
 
-from .chain.common.opensea_metadata import make_metadata
-from .common import with_debug_log
+from .chain.common.opensea_metadata import make_metadata, read_image_path_on_metadata
+from .common import with_debug_log, load_image_http
 
 
 def load_aws_config(node, config_path):
@@ -22,6 +22,7 @@ def load_aws_config(node, config_path):
 
 
 def save_metadata_s3(node, aws_access_key_id, aws_secret_access_key, region, bucket,
+                     key,
                      image_path, description, external_url, name):
     metadata = make_metadata(
         image_path=image_path,
@@ -34,7 +35,7 @@ def save_metadata_s3(node, aws_access_key_id, aws_secret_access_key, region, buc
     datetime_str = datetime.now().strftime('%Y%m%d%H%M%S')
 
     # Key 생성
-    key = f'comfyui-{datetime_str}.json'
+    key = key if key else f'comfyui-{datetime_str}.json'
 
     # BytesIO 객체를 이용해 이미지 업로드
     s3_path = f's3://{bucket}/{key}'
@@ -51,6 +52,7 @@ def save_metadata_s3(node, aws_access_key_id, aws_secret_access_key, region, buc
 
 
 def save_image_s3(node, image, aws_access_key_id, aws_secret_access_key, region, bucket,
+                  key,
                   prompt=None, extra_pnginfo=None):
     # torch.Tensor를 NumPy 배열로 변환
     i = 255. * image.cpu().numpy()
@@ -82,7 +84,7 @@ def save_image_s3(node, image, aws_access_key_id, aws_secret_access_key, region,
     datetime_str = datetime.now().strftime('%Y%m%d%H%M%S')
 
     # Key 생성
-    key = f'comfyui-{datetime_str}.png'
+    key = key if key else f'comfyui-{datetime_str}.png'
 
     # BytesIO 객체를 이용해 이미지 업로드
     s3_path = f's3://{bucket}/{key}'
@@ -90,6 +92,14 @@ def save_image_s3(node, image, aws_access_key_id, aws_secret_access_key, region,
     s3.put_object(Body=byte_arr, Bucket=bucket, Key=key)
 
     return with_debug_log(image, s3_path, public_http_path)
+
+
+def load_http_image(image_url):
+    return with_debug_log(load_image_http(image_url))
+
+
+def load_http_image_on_metadata(metadata_url):
+    return with_debug_log(load_image_http(read_image_path_on_metadata(metadata_url)))
 
 
 def copy_s3(node, file_path, aws_access_key_id, aws_secret_access_key, region, bucket):
