@@ -1,8 +1,8 @@
-def make_metadata(image, description=None, external_url=None, name=None):
+def make_metadata(image_path, description=None, external_url=None, name=None):
     metadata = {
         "description": description,
         "external_url": external_url,
-        "image": image,
+        "image": image_path,
         "name": name,
         "attributes": []
     }

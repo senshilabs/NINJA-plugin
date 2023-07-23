@@ -1,5 +1,5 @@
 from .service.common import COMMON, STRING, IMAGE, load_http_image
-from .service.storage import load_aws_config, save_image_s3, copy_s3
+from .service.storage import load_aws_config, save_image_s3, copy_s3, save_metadata_s3
 
 CATEGORY = "NINJA/Storage"
 
@@ -83,16 +83,16 @@ class S3ImageUpload(COMMON):
             "required": {
                 "image": (IMAGE,),
                 "aws_access_key_id": (STRING, {
-                    "multiline": False,  
+                    "multiline": False,
                     "default": "Put your AWS access key here"
                 }),
                 "aws_secret_access_key": (STRING, {
-                    "multiline": False,  
+                    "multiline": False,
                     "default": "Put your AWS secret access key here"
                 }),
                 "region": (AWS_REGIONS,),
                 "bucket": (STRING, {
-                    "multiline": False,  
+                    "multiline": False,
                     "default": "Put your bucket name here"
                 }),
 
@@ -110,6 +110,58 @@ class S3ImageUpload(COMMON):
                              extra_pnginfo)
 
 
+class S3MetadataUpload(COMMON):
+    def __init__(self):
+        pass
+
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "aws_access_key_id": (STRING, {
+                    "multiline": False,
+                    "default": "Put your AWS access key here"
+                }),
+                "aws_secret_access_key": (STRING, {
+                    "multiline": False,
+                    "default": "Put your AWS secret access key here"
+                }),
+                "region": (AWS_REGIONS,),
+                "bucket": (STRING, {
+                    "multiline": False,
+                    "default": "Put your bucket name here"
+                }),
+                "image_path": (STRING, {
+                    "multiline": False,
+                    "default": "Put your image path here"
+                }),
+                "description": (STRING, {
+                    "multiline": True,
+                    "default": "Put your description here (empty for none)"
+                }),
+                "external_url": (STRING, {
+                    "multiline": False,
+                    "default": "Put your external url here (empty for none)"
+                }),
+                "name": (STRING, {
+                    "multiline": False,
+                    "default": "Put your name here (empty for none)"
+                }),
+            },
+        }
+
+    RETURN_TYPES = (STRING, STRING)
+    RETURN_NAMES = ("s3_path", "http_public_url(only if public)")
+    CATEGORY = CATEGORY
+
+    OUTPUT_NODE = True
+
+    def execute(self, aws_access_key_id, aws_secret_access_key, region, bucket,
+                image_path, description, external_url, name, prompt=None, extra_pnginfo=None):
+        return save_metadata_s3(self,aws_access_key_id, aws_secret_access_key, region, bucket,
+                                image_path, description, external_url, name)
+
+
 class S3FileUpload(COMMON):
     def __init__(self):
         pass
@@ -119,20 +171,20 @@ class S3FileUpload(COMMON):
         return {
             "required": {
                 "local_file_path": (STRING, {
-                    "multiline": False,  
+                    "multiline": False,
                     "default": "Local File Path"
                 }),
                 "aws_access_key_id": (STRING, {
-                    "multiline": False,  
+                    "multiline": False,
                     "default": "Put your AWS access key here"
                 }),
                 "aws_secret_access_key": (STRING, {
-                    "multiline": False,  
+                    "multiline": False,
                     "default": "Put your AWS secret access key here"
                 }),
                 "region": (AWS_REGIONS,),
                 "bucket": (STRING, {
-                    "multiline": False,  
+                    "multiline": False,
                     "default": "Put your bucket name here"
                 }),
 
