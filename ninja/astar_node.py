@@ -37,7 +37,7 @@ class ReadImagePathERC721(COMMON):
         return read_image_path_evm(provider_url, contract_address, token_id)
 
 
-class ReadImagePathPSP34(COMMON):
+class ReadImagePathPayableMint(COMMON):
     def __init__(self):
         pass
 
