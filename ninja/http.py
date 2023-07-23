@@ -1,5 +1,5 @@
+from .service.call_http import call_http
 from .service.common import COMMON, STRING
-from .service.http import call_http
 
 CATEGORY = "NINJA/Http"
 
@@ -24,7 +24,7 @@ class HttpCall(COMMON):
                 "method": (HTTP_METHODS,),
                 "server_url": (STRING, {
                     "multiline": False,
-                    "default": "localhost:8000",
+                    "default": "http://localhost:8000",
                 }),
                 "headers": (STRING, {
                     "multiline": True,
