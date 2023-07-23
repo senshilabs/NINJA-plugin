@@ -83,29 +83,28 @@ class S3ImageUpload(COMMON):
             "required": {
                 "image": (IMAGE,),
                 "aws_access_key_id": (STRING, {
-                    "multiline": False,  # True if you want the field to look like the one on the ClipTextEncode node
+                    "multiline": False,  
                     "default": "Put your AWS access key here"
                 }),
                 "aws_secret_access_key": (STRING, {
-                    "multiline": False,  # True if you want the field to look like the one on the ClipTextEncode node
+                    "multiline": False,  
                     "default": "Put your AWS secret access key here"
                 }),
                 "region": (AWS_REGIONS,),
                 "bucket": (STRING, {
-                    "multiline": False,  # True if you want the field to look like the one on the ClipTextEncode node
+                    "multiline": False,  
                     "default": "Put your bucket name here"
                 }),
 
             },
         }
 
-    RETURN_TYPES = (IMAGE, STRING)
-    RETURN_NAMES = ("image", "s3_path")
+    RETURN_TYPES = (IMAGE, STRING, STRING)
+    RETURN_NAMES = ("image", "s3_path", "http_public_url(only if public)")
     CATEGORY = CATEGORY
 
     OUTPUT_NODE = True
 
-    # 이미지는 텐서
     def execute(self, image, aws_access_key_id, aws_secret_access_key, region, bucket, prompt=None, extra_pnginfo=None):
         return save_image_s3(self, image, aws_access_key_id, aws_secret_access_key, region, bucket, prompt,
                              extra_pnginfo)
@@ -120,20 +119,20 @@ class S3FileUpload(COMMON):
         return {
             "required": {
                 "local_file_path": (STRING, {
-                    "multiline": False,  # True if you want the field to look like the one on the ClipTextEncode node
+                    "multiline": False,  
                     "default": "Local File Path"
                 }),
                 "aws_access_key_id": (STRING, {
-                    "multiline": False,  # True if you want the field to look like the one on the ClipTextEncode node
+                    "multiline": False,  
                     "default": "Put your AWS access key here"
                 }),
                 "aws_secret_access_key": (STRING, {
-                    "multiline": False,  # True if you want the field to look like the one on the ClipTextEncode node
+                    "multiline": False,  
                     "default": "Put your AWS secret access key here"
                 }),
                 "region": (AWS_REGIONS,),
                 "bucket": (STRING, {
-                    "multiline": False,  # True if you want the field to look like the one on the ClipTextEncode node
+                    "multiline": False,  
                     "default": "Put your bucket name here"
                 }),
 

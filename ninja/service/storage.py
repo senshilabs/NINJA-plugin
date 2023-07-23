@@ -56,9 +56,10 @@ def save_image_s3(node, image, aws_access_key_id, aws_secret_access_key, region,
 
     # BytesIO 객체를 이용해 이미지 업로드
     s3_path = f's3://{bucket}/{key}'
+    public_http_path = f'https://{bucket}.s3.{region}.amazonaws.com/{key}'
     s3.put_object(Body=byte_arr, Bucket=bucket, Key=key)
 
-    return with_debug_log(image, s3_path)
+    return with_debug_log(image, s3_path, public_http_path)
 
 
 def copy_s3(node, file_path, aws_access_key_id, aws_secret_access_key, region, bucket):
