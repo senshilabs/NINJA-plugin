@@ -1,6 +1,6 @@
 from .service.common import COMMON, STRING, IMAGE
-from .service.storage import load_aws_config, save_image_s3, copy_s3, save_metadata_s3, load_http_image_on_metadata, \
-    load_http_image
+from .service.storage import load_aws_config, save_image_s3, copy_s3, save_metadata_s3, load_image_on_metadata, \
+    load_image
 
 CATEGORY = "NINJA/Storage"
 
@@ -28,7 +28,7 @@ AWS_REGIONS = [
 ]
 
 
-class LoadImageFromMetadataHTTP(COMMON):
+class LoadImageViaMetadataFromURL(COMMON):
     def __init__(self):
         pass
 
@@ -38,7 +38,7 @@ class LoadImageFromMetadataHTTP(COMMON):
             "required": {
                 "metadata_url": (STRING, {
                     "multiline": False,
-                    "default": "http url"
+                    "default": "http://"
                 }),
             },
         }
@@ -48,10 +48,10 @@ class LoadImageFromMetadataHTTP(COMMON):
     CATEGORY = CATEGORY
 
     def execute(self, metadata_url):
-        return load_http_image_on_metadata(metadata_url)
+        return load_image_on_metadata(metadata_url)
 
 
-class LoadImageHTTP(COMMON):
+class LoadImageFromUrl(COMMON):
     def __init__(self):
         pass
 
@@ -61,7 +61,7 @@ class LoadImageHTTP(COMMON):
             "required": {
                 "image_url": (STRING, {
                     "multiline": False,
-                    "default": "http url"
+                    "default": "http://"
                 }),
             },
         }
@@ -71,8 +71,7 @@ class LoadImageHTTP(COMMON):
     CATEGORY = CATEGORY
 
     def execute(self, image_url):
-        return load_http_image(image_url)
-
+        return load_image(image_url)
 
 class LoadAWSConfig(COMMON):
     def __init__(self):

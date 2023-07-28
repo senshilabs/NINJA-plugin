@@ -3,7 +3,7 @@ from .astar_node import ReadImagePathPayableMint as AstarReadImagePathPayableMin
 from .astar_node import ReadAttributePSP43 as AstarReadAttributePSP43
 from .ether_node import ReadImagePathERC721 as EtherReadImagePathERC721
 from .storage import S3ImageUpload, LoadAWSConfig, S3FileUpload, \
-    LoadImageHTTP, S3MetadataUpload, LoadImageFromMetadataHTTP
+    LoadImageFromUrl, S3MetadataUpload, LoadImageViaMetadataFromURL
 from .http import HttpCall
 
 # A dictionary that contains all nodes you want to export with their names
@@ -13,8 +13,8 @@ NODE_CLASS_MAPPINGS = {
     "S3MetadataUpload": S3MetadataUpload,
     "LoadAWSConfig": LoadAWSConfig,
     "S3FileUpload": S3FileUpload,
-    "LoadImageHTTP": LoadImageHTTP,
-    "LoadImageFromMetadataHTTP": LoadImageFromMetadataHTTP,
+    "LoadImageFromUrl": LoadImageFromUrl,
+    "LoadImageViaMetadataFromURL": LoadImageViaMetadataFromURL,
     "EtherReadImagePathERC721": EtherReadImagePathERC721,
     "AstarReadImagePathERC721": AstarReadImagePathERC721,
     "AstarReadImagePathPayableMint": AstarReadImagePathPayableMint,
@@ -28,8 +28,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "S3MetadataUpload": "S3 Metadata Upload",
     "LoadAWSConfig": "Load AWS Config",
     "S3FileUpload": "S3 File Upload",
-    "LoadImageHTTP": "Load Image HTTP",
-    "LoadImageFromMetadataHTTP": "Load Image From Metadata HTTP",
+    "LoadImageFromUrl": "Load Image HTTP or IPFS",
+    "LoadImageViaMetadataFromURL": "Load Image From Metadata HTTP or IPFS",
     "EtherReadImagePathERC721": "Ether Read Image Path ERC721",
     "AstarReadImagePathERC721": "Astar Read Image Path ERC721",
     "AstarReadImagePathPayableMint": "Astar Read Image Path Payable Mint",

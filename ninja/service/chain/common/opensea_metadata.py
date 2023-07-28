@@ -12,5 +12,6 @@ def make_metadata(image_path, description=None, external_url=None, name=None):
 
 def read_image_path_on_metadata(metadata_url):
     import requests
-    metadata = requests.get(metadata_url).json()
+    metadata = requests.get(metadata_url.replace("ipfs://",
+                                                 "https://ipfs.io/ipfs/")).json()
     return metadata["image"]

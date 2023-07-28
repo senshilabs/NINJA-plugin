@@ -19,13 +19,13 @@ CATEGORY = "NINJA"
 DEBUG = True
 
 
-def load_image_http(url):
+def load_image_from_url(url):
     import requests
     import torch
     from PIL import Image
     from io import BytesIO
     import numpy as np
-    content = requests.get(url).content
+    content = requests.get(url.replace("ipfs://", "https://ipfs.io/ipfs/")).content
     i = Image.open(BytesIO(content))
     i = i.convert("RGB")
     image = np.array(i).astype(np.float32) / 255.0

@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image, PngImagePlugin
 
 from .chain.common.opensea_metadata import make_metadata, read_image_path_on_metadata
-from .common import with_debug_log, load_image_http
+from .common import with_debug_log, load_image_from_url
 
 
 def load_aws_config(node, config_path):
@@ -94,12 +94,12 @@ def save_image_s3(node, image, aws_access_key_id, aws_secret_access_key, region,
     return with_debug_log(image, s3_path, public_http_path)
 
 
-def load_http_image(image_url):
-    return with_debug_log(load_image_http(image_url))
+def load_image(image_url):
+    return with_debug_log(load_image_from_url(image_url))
 
 
-def load_http_image_on_metadata(metadata_url):
-    return with_debug_log(load_image_http(read_image_path_on_metadata(metadata_url)))
+def load_image_on_metadata(metadata_url):
+    return with_debug_log(load_image_from_url(read_image_path_on_metadata(metadata_url)))
 
 
 def copy_s3(node, file_path, aws_access_key_id, aws_secret_access_key, region, bucket):
