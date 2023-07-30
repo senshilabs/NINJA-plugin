@@ -34,11 +34,16 @@ The NINJA-plugin presently supports:
 
 ## Upcoming Extensions
 
-NINJA-plugin is designed for expandability. Our future plan includes:
+NINJA-plugin is designed for expandability, and we have an exciting roadmap ahead. Our future plan includes:
 
-- **Support for additional blockchains**: We are working to extend our blockchain node to accommodate more chains, including but not limited to Sui, Near Protocol, etc.
+ - **Support for Additional Blockchains**: We are working to extend our blockchain node to accommodate more chains, including but not limited to Sui, Near Protocol, etc.
 
-- **Support for more transaction types**: Currently, our nodes directly support read operations. We aim to include support for more transaction types, such as writing to contracts and triggering smart contract functions, etc.
+ - **Support for More Transaction Types**: Currently, our nodes directly support read operations. We aim to include support for more transaction types, such as writing to contracts and triggering smart contract functions, etc.
+
+ - **Enhancing Usability**: Our focus on user experience will drive us to make continuous improvements in the plugin's usability. We recognize that an intuitive and user-friendly interface is essential for widespread adoption, and we are committed to refining the existing features to make them more accessible to users of all levels.
+
+ - **Full UX Integration**: Building on our efforts to enhance usability, we are planning a full integration of user experience design within the plugin. This means a concerted effort to align all aspects of the user's interaction with the plugin, ensuring that it not only meets functional needs but also provides an engaging and satisfying experience.
+
 
 ## Project Structure
 
