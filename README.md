@@ -9,6 +9,10 @@ NINJA, an acronym for "Ninja is an Interface for NFTs and a Junction of AI", is 
 
 Welcome to the NINJA-plugin repository! The NINJA-plugin is a custom node developed for [ComfyUI](https://github.com/comfyanonymous/ComfyUI). 
 
+## Structure
+![image](https://github.com/senshilabs/NINJA-plugin/assets/10369528/05bf139f-e6a7-4faf-ba74-5b04d6470059)
+
+
 ## How to Use
 
 1. Start by cloning this repository or downloading the code.
@@ -44,5 +48,3 @@ The project adopts a clear and intuitive structure, segregating different functi
 
 - `./service/`: This directory contains the core logic of the project, housing the actual implementations of the functionalities. It is further divided into subdirectories for specific tasks and features.
 
-## Workflow Example
-- TBD
