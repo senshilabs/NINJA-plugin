@@ -48,6 +48,20 @@ The project adopts a clear and intuitive structure, segregating different functi
 
 - `./service/`: This directory contains the core logic of the project, housing the actual implementations of the functionalities. It is further divided into subdirectories for specific tasks and features.
 
+## Nodes
+- `S3 Image Upload`: Used to upload images to S3
+- `S3 Metadata Upload`: Used to upload OpenSea standard metadata to S3.
+- `S3 File Upload`: Used to upload a file to S3.
+- `Load AWS Config`: Used to load AWS-specific settings on the path if you do not want to expose security information such as AWS secret keys, etc.
+- `Load Image HTTP or IPFS`: Used to load an image from HTTP or IPFS, it automatically determines the HTTP/IPFS path and loads the image.
+- `Load Image From Metadata HTTP or IPFS`: Used to load an image from metadata on HTTP or IPFS. When you enter the URL of the metadata, it extracts the URL of the image contained in the metadata and returns the image.
+- `Ether Read Image Path ERC721`: Returns the image path of an ERC721 token on the Ethereum network.
+- `Astar Read Image Path ERC721`: Returns the image path of an ERC721 token on the Astar network.
+- `Astar Read Image Path Payable Mint`: Returns the image path through the `PayableMint::token_uri` interface of a WASM-based contract on the Astar network.
+- `Astar Read Attribute PSP43`: Returns an attribute via the `PSP43::get_attribute` interface of a WASM-based contract on the Astar network.
+- `HttpCall`: Sends a request to a URL by entering the HTTP request method (GET, POST, etc.), URL, headers, body, etc.
+
+
 ## Workflow Example
 - [Video](https://www.youtube.com/watch?v=hODK3rptbdk)
 
