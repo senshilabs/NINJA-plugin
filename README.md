@@ -48,3 +48,6 @@ The project adopts a clear and intuitive structure, segregating different functi
 
 - `./service/`: This directory contains the core logic of the project, housing the actual implementations of the functionalities. It is further divided into subdirectories for specific tasks and features.
 
+## Workflow Example
+- [Video](https://www.youtube.com/watch?v=hODK3rptbdk)
+
