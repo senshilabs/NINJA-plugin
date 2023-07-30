@@ -1,6 +1,9 @@
 # NINJA-plugin
+![image](https://github.com/senshilabs/NINJA-plugin/assets/10369528/3172eef7-f346-401a-aaf0-9931d6b56daa)
 
 NINJA, an acronym for "Ninja is an Interface for NFTs and a Junction of AI", is a project designed to seamlessly blend the worlds of blockchain technology and artificial intelligence, providing a powerful, no-code tool that caters to both industries.
+
+![image](https://github.com/senshilabs/NINJA-plugin/assets/10369528/2b821923-a497-40dd-ad31-03fc9001da40)
 
 ## Overview
 
