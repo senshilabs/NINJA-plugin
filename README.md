@@ -68,5 +68,5 @@ The project adopts a clear and intuitive structure, segregating different functi
 
 
 ## Workflow Example
-- [Video](https://www.youtube.com/watch?v=hODK3rptbdk)
+- [Video](https://youtu.be/rNmzfS-pZ34)
 
